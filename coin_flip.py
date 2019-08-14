@@ -2,7 +2,7 @@ import random
 
 # Single coin flip game: returns 1 if guess was correct, 0 if guess was wrong
 def coin_flip_game_single():
-    coin_flip_guess_string = input("Heads or tails? ")
+    coin_flip_guess_string = input("Take a guess: heads or tails? ")
     while 1 == 1:
         if coin_flip_guess_string.lower() == "heads":
             coin_flip_guess_num = 0
@@ -28,7 +28,7 @@ def coin_flip_game_single():
 #coin_flip_game_single()
 
 # A run of coin flip games with tally
-def coin_flip_game_multiple():
+def coin_flip_game():
     print("Let's play the coin flip game!")
     total_games = 0
     total_wins = 0
@@ -47,11 +47,11 @@ def coin_flip_game_multiple():
             proceed_input = input("Please answer either yes or no: ")
 
 # Test
-#coin_flip_game_multiple()
+#coin_flip_game()
 
 # Single 6-sided die roll
 def die_roll_game_single():
-    die_roll_guess = input("Pick a number from 1 to 6: ")
+    die_roll_guess = input("Take a guess - pick a number from 1 to 6: ")
     while 1 == 1:
         if die_roll_guess in str(list(range(1, 7))):
             die_roll_guess = int(die_roll_guess)
@@ -70,7 +70,7 @@ def die_roll_game_single():
 #die_roll_game_single()
 
 # A run of dice rolls with a tally
-def dice_roll_game_multiple():
+def dice_roll_game():
     print("Let's play the dice roll game!")
     total_games = 0
     total_wins = 0
@@ -89,11 +89,11 @@ def dice_roll_game_multiple():
             proceed_input = input("Please answer either yes or no: ")
 
 # Test
-#dice_roll_game_multiple()
+#dice_roll_game()
 
 # Choice between dice game and coin flip game
 def coin_or_dice_game():
-    coin_or_dice = input("Let's play a game of chance. Would you like to flip a coin or roll a die? ")
+    coin_or_dice = input("Let's play a guessing game. Would you like to flip a coin or roll a die? ")
     total_games = 0
     total_wins = 0
     while 1 == 1:
