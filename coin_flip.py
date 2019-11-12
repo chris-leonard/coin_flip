@@ -6,13 +6,13 @@ def coin_flip():
     Returns 1 if user guesses correctly, 0 if incorrectly.
     """ 
     # Solicit user guess as a string and make it all lowercase
-    coin_flip_guess_string = input("Take a guess: heads or tails? ")
-    coin_flip_guess_string = coin_flip_guess_string.lower()
+    coin_flip_guess = input("Take a guess: heads or tails? ")
+    coin_flip_guess = coin_flip_guess.lower()
 
     # If guess isn't heads or tails, solicit new guess from user
-    while coin_flip_guess_string not in ["heads", "tails"]:
-        coin_flip_guess_string = input("Please guess either heads or tails: ")
-        coin_flip_guess_string = coin_flip_guess_string.lower()
+    while coin_flip_guess not in ["heads", "tails"]:
+        coin_flip_guess = input("Please guess either heads or tails: ")
+        coin_flip_guess = coin_flip_guess.lower()
 
     # Flip our coin: 1 for heads, 0 for tails
     coin_flip_outcome_num = random.randint(0,1)
@@ -27,14 +27,39 @@ def coin_flip():
     print("The coin flip came out " + coin_flip_outcome_string + ".")
 
     # Compare guess with outcome
-    if coin_flip_guess_string == coin_flip_outcome_string:
+    if coin_flip_gues == coin_flip_outcome_string:
         print("Your guess was correct - good job!")
-        win_count = 1
+        return 1
     else:
         print("Unlucky, you got it wrong this time.")
-        win_count = 0
+        return 0
+
+def die_roll():
+    """
+    Rolls a 6-sided die, has user guess outcome, and informs them if correct or not.
+    Returns 1 if user guesses correctly, 0 if incorrectly
+    """
+    # Solicit user guess
+    die_roll_guess = input("Take a guess - pick a number from 1 to 6: ")
+
+    # If guess isn't a number from 1 to 6, solicit a new guess
+    while die_roll_guess not in str(list(range(1, 7))):
+        die_roll_guess = input("Please pick a number between 1 and 6 expressed as an arabic numeral: ")
     
-    return win_count
+    # Roll die and print outcome
+    die_roll_outcome = random.randint(1,6)
+    print("I rolled a " + str(die_roll_outcome) + ".")
+
+    # Verify guess with outcome
+    if die_roll_guess == die_roll_outcome:
+        print("Your guess was correct - good job!")
+        return 1
+    else:
+        print("Unlucky, you got it wrong this time.")
+        return 0
+
+# Test
+die_roll()
 
 # A run of coin flip games with tally
 def coin_flip_game():
@@ -43,7 +68,7 @@ def coin_flip_game():
     total_wins = 0
     while 1 == 1:
         total_games += 1
-        total_wins += coin_flip_game_single()
+        total_wins += coin_flip()
         print("You've played " + str(total_games) + " times so far and won " + str(total_wins) + " times.")
         proceed_input = input("Would you like to play again? ")
         while 1 == 1:
@@ -57,26 +82,6 @@ def coin_flip_game():
 
 # Test
 #coin_flip_game()
-
-# Single 6-sided die roll
-def die_roll_game_single():
-    die_roll_guess = input("Take a guess - pick a number from 1 to 6: ")
-    while 1 == 1:
-        if die_roll_guess in str(list(range(1, 7))):
-            die_roll_guess = int(die_roll_guess)
-            break
-        die_roll_guess = input("Please pick a number between 1 and 6 expressed as an arabic numeral: ")
-    die_roll_outcome = random.randint(1,6)
-    print("I rolled a " + str(die_roll_outcome) + ".")
-    if die_roll_guess == die_roll_outcome:
-        print("Your guess was correct - good job!")
-        return 1
-    else:
-        print("Unlucky, you got it wrong this time.")
-        return 0
-
-# Test
-#die_roll_game_single()
 
 # A run of dice rolls with a tally
 def dice_roll_game():
@@ -109,7 +114,7 @@ def coin_or_dice_game():
         while 1 == 1:
             if coin_or_dice.lower() == "flip a coin":
                 total_games += 1
-                total_wins += coin_flip_game_single()
+                total_wins += coin_flip()
                 break
             if coin_or_dice.lower() == "roll a die":
                 total_games += 1
