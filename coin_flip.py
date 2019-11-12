@@ -1,31 +1,40 @@
 import random
 
-# Single coin flip game: returns 1 if guess was correct, 0 if guess was wrong
-def coin_flip_game_single():
+def coin_flip():
+    """
+    Flips a coin, has user guess outcome, and informs them if they were correct or not.
+    Returns 1 if user guesses correctly, 0 if incorrectly.
+    """ 
+    # Solicit user guess as a string and make it all lowercase
     coin_flip_guess_string = input("Take a guess: heads or tails? ")
-    while 1 == 1:
-        if coin_flip_guess_string.lower() == "heads":
-            coin_flip_guess_num = 0
-            break
-        if coin_flip_guess_string.lower() == "tails":
-            coin_flip_guess_num = 1
-            break
+    coin_flip_guess_string = coin_flip_guess_string.lower()
+
+    # If guess isn't heads or tails, solicit new guess from user
+    while coin_flip_guess_string not in ["heads", "tails"]:
         coin_flip_guess_string = input("Please guess either heads or tails: ")
+        coin_flip_guess_string = coin_flip_guess_string.lower()
+
+    # Flip our coin: 1 for heads, 0 for tails
     coin_flip_outcome_num = random.randint(0,1)
-    if coin_flip_outcome_num == 0:
+
+    # Convert outcome to string
+    if coin_flip_outcome_num == 1:
         coin_flip_outcome_string = "heads"
     else:
         coin_flip_outcome_string = "tails"
+
+    # Print outcome
     print("The coin flip came out " + coin_flip_outcome_string + ".")
-    if coin_flip_guess_num == coin_flip_outcome_num:
+
+    # Compare guess with outcome
+    if coin_flip_guess_string == coin_flip_outcome_string:
         print("Your guess was correct - good job!")
-        return 1
+        win_count = 1
     else:
         print("Unlucky, you got it wrong this time.")
-        return 0
-
-# Test
-#coin_flip_game_single()
+        win_count = 0
+    
+    return win_count
 
 # A run of coin flip games with tally
 def coin_flip_game():
@@ -121,4 +130,4 @@ def coin_or_dice_game():
                
 
 # Test
-coin_or_dice_game()
+#coin_or_dice_game()
