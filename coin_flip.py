@@ -27,7 +27,7 @@ def coin_flip():
     print("The coin flip came out " + coin_flip_outcome_string + ".")
 
     # Compare guess with outcome
-    if coin_flip_gues == coin_flip_outcome_string:
+    if coin_flip_guess == coin_flip_outcome_string:
         print("Your guess was correct - good job!")
         return 1
     else:
@@ -58,81 +58,48 @@ def die_roll():
         print("Unlucky, you got it wrong this time.")
         return 0
 
-# Test
-die_roll()
 
-# A run of coin flip games with tally
-def coin_flip_game():
-    print("Let's play the coin flip game!")
+def coin_or_die_game():
+    """
+    Asks user to either flip a coin or roll a die and guess the outcome.
+    Allows user to play multiple games and counts games played and wins.
+    """
+    # Initialise counters
     total_games = 0
     total_wins = 0
-    while 1 == 1:
+
+    print("Let's play a guessing game.")
+
+    while 1 == 1: 
         total_games += 1
-        total_wins += coin_flip()
-        print("You've played " + str(total_games) + " times so far and won " + str(total_wins) + " times.")
-        proceed_input = input("Would you like to play again? ")
-        while 1 == 1:
-            if proceed_input.lower() == "yes":
-                print("Great, let's play again.")
-                break
-            if proceed_input.lower() == "no":
-                print("Okay, thanks for playing.")
-                return
-            proceed_input = input("Please answer either yes or no: ")
 
-# Test
-#coin_flip_game()
+        # Solicit game choice
+        game_choice = input("Would you like to flip a coin or roll a die? ").lower()
 
-# A run of dice rolls with a tally
-def dice_roll_game():
-    print("Let's play the dice roll game!")
-    total_games = 0
-    total_wins = 0
-    while 1 == 1:
-        total_games += 1
-        total_wins += die_roll_game_single()
-        print("You've played " + str(total_games) + " times so far and won " + str(total_wins) + " times.")
-        proceed_input = input("Would you like to play again? ")
-        while 1 == 1:
-            if proceed_input.lower() == "yes":
-                print("Great, let's play again.")
-                break
-            if proceed_input.lower() == "no":
-                print("Okay, thanks for playing.")
-                return
-            proceed_input = input("Please answer either yes or no: ")
-
-# Test
-#dice_roll_game()
-
-# Choice between dice game and coin flip game
-def coin_or_dice_game():
-    coin_or_dice = input("Let's play a guessing game. Would you like to flip a coin or roll a die? ")
-    total_games = 0
-    total_wins = 0
-    while 1 == 1:
-        while 1 == 1:
-            if coin_or_dice.lower() == "flip a coin":
-                total_games += 1
-                total_wins += coin_flip()
-                break
-            if coin_or_dice.lower() == "roll a die":
-                total_games += 1
-                total_wins += die_roll_game_single()
-                break
-            coin_or_dice = input("Please type either 'flip a coin' or 'roll a die': ")
+        # Solicit new response if not in required form
+        while game_choice not in ["flip a coin", "roll a die"]:
+            game_choice = input("Please type either 'flip a coin' or 'roll a die': ").lower()
+        
+        # Play game and update counters
+        if game_choice == "flip a coin":
+            total_wins += coin_flip()
+        else:
+            total_wins += die_roll()
+        
+        # Print running tally
         print("You've played " + str(total_games) + " games so far and won " + str(total_wins) + " times.")
-        proceed_input = input("Would you like to play again? ")
-        while 1 == 1:
-            if proceed_input.lower() == "yes":
-                print("Great, let's play again.")
-                break
-            if proceed_input.lower() == "no":
-                print("Okay, thanks for playing.")
-                return
-            proceed_input = input("Please answer either yes or no: ")
-        coin_or_dice = input("Would you like to flip a coin or roll a die? ")
-               
 
-# Test
-#coin_or_dice_game()
+        # Ask to play again
+        proceed_input = input("Would you like to play again? ").lower()
+
+        while proceed_input not in ["yes", "no"]:
+            proceed_input = input("Please answer either yes or no: ").lower()
+        
+        if proceed_input == "yes":
+            print("Great, let's play again.")
+        else:
+            print("Okay, thanks for playing.")
+            break
+
+# Run game
+coin_or_die_game()
