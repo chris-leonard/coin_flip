@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import random
 
 def coin_flip():
@@ -101,5 +103,6 @@ def coin_or_die_game():
             print("Okay, thanks for playing.")
             break
 
-# Run game
-coin_or_die_game()
+# Code to run on execution of script
+if __name__ == '__main__':
+    coin_or_die_game()
